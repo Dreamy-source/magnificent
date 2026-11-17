@@ -1,0 +1,5 @@
+add table inet global_table
+add chain inet global_table global_chain { type filter hook output priority -10; }
+
+add rule inet global_table global_chain oifname "enp4s0" tcp dport { 80, 443, 1024-65535} queue num 200
+add rule inet global_table global_chain oifname "enp4s0" udp dport { 443, 1024-65535 } queue num 200
